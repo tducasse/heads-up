@@ -52,7 +52,7 @@ const Home = ({ start }) => {
 
   return (
     <HomeContainer>
-      <h1>HEAD'S UP</h1>
+      <h1>HEADS UP</h1>
       <Decks selected={deck} onChange={(e) => setDeck(e.target.value)} />
       <button onClick={openFullscreen}>Go full screen</button>
       <button onClick={closeFullscreen}>Close full screen</button>
