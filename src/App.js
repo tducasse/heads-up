@@ -3,12 +3,24 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { openFullscreen, closeFullscreen } from "./fullscreen";
 import { movies } from "./movies";
+import { timesUpFr } from "./timesUpFr";
 
-const decks = ["movies"];
-
-const CARDS = {
+const deckData = {
   movies,
+  timesUpFr,
 };
+
+const deckNames = {
+  movies: "MOVIES",
+  timesUpFr: "TIME'S UP (FR)",
+};
+
+const decks = Object.values(deckNames);
+
+const CARDS = Object.entries(deckNames).reduce(
+  (acc, [key, val]) => ({ ...acc, [val]: deckData[key] }),
+  {}
+);
 
 const App = () => {
   const [started, setStarted] = useState(false);
