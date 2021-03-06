@@ -1,3 +1,7 @@
+import NoSleep from "nosleep.js";
+
+const noSleep = new NoSleep();
+
 const elem = document.documentElement;
 
 export const openFullscreen = () => {
@@ -11,6 +15,7 @@ export const openFullscreen = () => {
       /* IE11 */
       elem.msRequestFullscreen();
     }
+    noSleep.enable();
     // eslint-disable-next-line no-restricted-globals
     screen.orientation.lock("landscape-primary");
   } catch (err) {
@@ -29,6 +34,7 @@ export const closeFullscreen = () => {
       /* IE11 */
       document.msExitFullscreen();
     }
+    noSleep.disable();
   } catch (err) {
     console.error(err);
   }
