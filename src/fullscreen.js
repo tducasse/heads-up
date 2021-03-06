@@ -11,6 +11,8 @@ export const openFullscreen = () => {
       /* IE11 */
       elem.msRequestFullscreen();
     }
+    // eslint-disable-next-line no-restricted-globals
+    screen.orientation.lock("landscape-primary");
   } catch (err) {
     console.error(err);
   }
