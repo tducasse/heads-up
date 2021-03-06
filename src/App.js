@@ -4,15 +4,38 @@ import styled from "styled-components";
 import { openFullscreen, closeFullscreen } from "./fullscreen";
 import { movies } from "./movies";
 import { timesUpFr } from "./timesUpFr";
+import { gamewords } from "./gamewords";
+
+const parseGameWords = () => {
+  const all = {};
+  Object.keys(gamewords).forEach((key) => {
+    Object.entries(gamewords[key]).forEach(([key2, data]) => {
+      all[`${key} - ${key2}`] = data;
+    });
+  });
+
+  console.log(all);
+  return {
+    gameWordsData: all,
+    gameWordsNames: Object.keys(all).reduce(
+      (acc, curr) => ({ ...acc, [curr]: curr }),
+      {}
+    ),
+  };
+};
+
+const { gameWordsData, gameWordsNames } = parseGameWords();
 
 const deckData = {
   movies,
   timesUpFr,
+  ...gameWordsData,
 };
 
 const deckNames = {
-  movies: "MOVIES",
-  timesUpFr: "TIME'S UP (FR)",
+  movies: "movies",
+  timesUpFr: "time's up (fr)",
+  ...gameWordsNames,
 };
 
 const decks = Object.values(deckNames);
@@ -52,7 +75,7 @@ const Decks = ({ onChange, selected }) => {
     <select value={selected} onChange={onChange}>
       {decks.map((deck) => (
         <option key={deck} value={deck}>
-          {deck}
+          {deck.toUpperCase()}
         </option>
       ))}
     </select>
